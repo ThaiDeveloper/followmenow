@@ -1,0 +1,4 @@
+<?php $_productVideos = $this->_getProductVideos(); ?>
+<?php if($_productVideos && $_productVideos->count() > 0): ?>
+	<a href="javascript:void(0)" class="showVideo"><?php echo $this->__('Product Videos') ?></a>
+<?php endif;?>

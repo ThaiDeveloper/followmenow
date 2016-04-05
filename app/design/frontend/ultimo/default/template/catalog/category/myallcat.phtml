@@ -1,0 +1,12 @@
+<?php
+	$children = Mage::getModel('catalog/category')->getCategories(122); // put your main root category id here
+	foreach ($children as $category):
+		$category=Mage::getModel('catalog/category')->load($category->getId()); 
+?>
+		<a class="overlay" href="<?php echo $category->getUrl() ?>">
+			<img src="<?php echo Mage::getBaseUrl('media')?>catalog/category/<?php echo $category->getThumbnail() ?>" height="350" width='350' />
+			<span class="mask"><?php echo $category->getName() ?></span>
+		</a>
+<?php
+	endforeach;
+?>

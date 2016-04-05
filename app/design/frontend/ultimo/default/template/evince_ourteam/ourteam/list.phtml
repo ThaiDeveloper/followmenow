@@ -1,0 +1,136 @@
+<?php
+/**
+ * Evince_Ourteam extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category   	Evince
+ * @package		Evince_Ourteam
+ * @copyright  	Copyright (c) 2013
+ * @license		http://opensource.org/licenses/mit-license.php MIT License
+ */
+/**
+ * Our Team list template
+ *
+ * @category	Evince
+ * @package		Evince_Ourteam
+ * @author Evince Development
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php
+$media_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+$_ourteams = $this->getOurteams();
+$url = Mage::getBaseUrl();
+
+$resource = Mage::getSingleton('core/resource');
+$read = $resource->getConnection('core_read');
+
+$listTeams = $read->fetchAll("SELECT team.entity_id, team.name, team.image, team.pro_team  FROM `ourteam_ourteam` AS team WHERE team.status = 1 ORDER BY designation");
+$proTeams = array();
+$amTeams = array();
+if(!empty($listTeams)){
+    foreach($listTeams as $listTeam){
+        if($listTeam['pro_team'] == 1){
+            $proTeams[] = $listTeam;
+        }  else {
+            $amTeams[] = $listTeam;
+        }
+    }
+}
+
+?>
+<?php if (!empty($proTeams)) : ?>
+    <div class="page-title ourteam-title">
+        <h2><?php echo Mage::helper('ourteam')->__('PRO TEAM') ?></h2>
+    </div>
+    <?php // echo $this->getPagerHtml(); ?>
+    <div class="ourteam-list-container">
+        <ul class="teamGallery">
+            <?php foreach ($proTeams as $proTeam) :
+     //        echo '<pre>';
+     // print_r($listTeams);
+     // echo '</pre>';
+     // exit();
+            ?>
+                <li class="ourteam-list-item">
+                    <a href="<?php echo $url . 'ourteam/ourteam/view/id/' . $proTeam['entity_id']; ?>" title="<?php echo $this->htmlEscape($proTeam['name']) ?>">
+                        <?php if ($proTeam['image'] != '') {?>
+                            <img class="member_avatar " src="<?php echo $media_url . "ourteam/image" . $proTeam['image'] ?>" alt="<?php echo $proTeam['name']; ?>" />
+                        <?php } else { ?>
+                            <img class="member_avatar" src="<?php echo $this->getSkinUrl('images/placeholder/ourteam.jpg') ?>" alt="" />
+                        <?php } ?>
+                        <h2 class="member_name">
+                            <?php echo $proTeam['name']; ?>
+                        </h2>
+                    </a>
+
+                    <?php /*
+                      <?php if ($_ourteam->getDesignation()) { ?>
+                      <div id="greg_description">
+                      <?php echo $_ourteam->getDesignation(); ?>
+                      </div>
+                      <?php } ?>
+
+                      <?php if ($_ourteam->getDescription()) { ?>
+                      <a class="read-more" href="<?php echo $_ourteam->getOurteamUrl(); ?>" title="<?php echo $this->htmlEscape($_ourteam->getName()) ?>">
+                      <?php echo __('View'); ?>
+                      </a>
+                      <?php } ?>
+                     */ ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <?php //echo $this->getPagerHtml(); ?>
+<?php else : ?>
+    <?php echo Mage::helper('ourteam')->__('There are no our team at this moment'); ?>
+<?php endif; ?>
+<?php if (!empty($amTeams)) : ?>
+    <div class="page-title ourteam-title">
+        <h2><?php echo Mage::helper('ourteam')->__('AM TEAM') ?></h2>
+    </div>
+    <?php // echo $this->getPagerHtml(); ?>
+    <div class="ourteam-list-container">
+        <ul>
+            <?php foreach ($amTeams as $amTeam) : ?>
+                <li>
+                    <a href="<?php echo $url . 'ourteam/ourteam/view/id/' . $amTeam['entity_id']; ?>" title="<?php echo $this->htmlEscape($amTeam['name']) ?>">
+                        <?php /*
+						<?php if ($amTeam['image']) { ?>
+                            <img class="member_avatar " src="<?php echo $media_url . "ourteam/image" . $amTeam['image'] ?>" alt="<?php echo $amTeam['name']; ?>" />
+                        <?php } else { ?>
+                            <img class="member_avatar" src="<?php echo $this->getSkinUrl('images/placeholder/ourteam.jpg') ?>" alt="" />
+                        <?php } ?>
+						*/ ?>
+                        <h2 class="member_name">
+                            <?php echo $amTeam['name']; ?>
+                        </h2>
+                    </a>
+
+                    <?php /*
+                      <?php if ($_ourteam->getDesignation()) { ?>
+                      <div id="greg_description">
+                      <?php echo $_ourteam->getDesignation(); ?>
+                      </div>
+                      <?php } ?>
+
+                      <?php if ($_ourteam->getDescription()) { ?>
+                      <a class="read-more" href="<?php echo $_ourteam->getOurteamUrl(); ?>" title="<?php echo $this->htmlEscape($_ourteam->getName()) ?>">
+                      <?php echo __('View'); ?>
+                      </a>
+                      <?php } ?>
+                     */ ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <?php //echo $this->getPagerHtml(); ?>
+<?php else : ?>
+    <?php echo Mage::helper('ourteam')->__('There are no our team at this moment'); ?>
+<?php endif; ?>

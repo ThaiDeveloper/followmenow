@@ -1,0 +1,35 @@
+<?php
+$posts = Mage::getModel('blog/blog')
+        ->getCollection()
+        ->addPresentFilter()
+        ->addStoreFilter(Mage::app()->getStore()->getId())
+        ->addFieldToFilter('status', 1)
+        ->setOrder('created_time ', 'desc')
+        ->setPageSize(3);
+
+
+$urlBlog = $this->getBlogUrl();
+?>
+<div id="messages_product_view">
+    <?php Mage::app()->getLayout()->getMessagesBlock()->setMessages(Mage::getSingleton('customer/session')->getMessages(true)); ?>
+    <?php echo Mage::app()->getLayout()->getMessagesBlock()->getGroupedHtml(); ?>
+</div>
+
+<h3><?php echo $this->__('Follow Blog'); ?></h3>
+<ul>
+    <?php
+    foreach ($posts as $post):
+        ?>
+        <li>
+            <a href="<?php echo $urlBlog.$post->getIdentifier(); ?>">
+				<span class="postThumbnail" style="background:url(<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'blogpic/' . $post->getFeaturedImage() ?>) no-repeat center center/cover"></span>
+				<span class="postContent">
+					<?php /* <h2><a href="<?php echo $urlBlog.$post->getIdentifier(); ?>" ><?php echo $post->getTitle(); ?></a></h2>*/ ?>
+					<span class="title"><?php echo $post->getTitle(); ?></span>
+					<?php echo $post->getShortContent(); ?>
+					<?php /*<a href="<?php echo $urlBlog.$post->getIdentifier(); ?>">Read more</a>*/ ?>
+				</span> 
+			</a>
+        </li>
+<?php endforeach; ?>
+</ul>

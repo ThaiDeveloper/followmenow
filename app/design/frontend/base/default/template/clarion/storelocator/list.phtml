@@ -1,0 +1,99 @@
+<?php
+/**
+ * Storelocator template for stores list
+ *
+ * @author Magento
+ */
+/**
+ * @var $this Clarion_Storelocator_Block_List
+ * @see Clarion_Storelocator_Block_List
+ */
+?>
+<?php
+$markers = array();
+?>
+<div class="page-title">
+    <h1><?php echo Mage::helper('clarion_storelocator')->__('Follow Dealers') ?></h1>
+</div>
+
+<table border="0" id="search-store">    
+    <div id="addressSearch">
+        <label for="city" ><?php echo $this->__('Your Location') ?></label>
+        <div class="input-box">
+            <input type="text" name="city" id="address" value="<?php echo $this->escapeHtml($this->getFormData()->getCity()) ?>" title="<?php echo $this->__('Location') ?>" class="input-text" />
+        </div>
+
+        <label for="radius"><?php echo $this->__('Radius') ?></label>
+        <div class="input-box">
+            <div class="styled">
+                <select name="radius" id="radius" class="select" title="<?php echo $this->__('Radius') ?>">
+                    <option value="30">30km</option>
+                    <option value="50">50km</option>
+                    <option value="100">100km</option>
+                    <option value="200">200km</option>
+                    <option value="500">500km</option>
+                    <option value="1000">1000km</option>
+                </select>
+            </div>
+        </div>
+
+        <label for="num_results"><?php echo $this->__('Results') ?></label>
+        <div class="input-box">
+            <div class="styled">
+                <select name="num_results" id="num_results" class="select" title="<?php echo $this->__('Results') ?>">
+                    <option value="10">10</option>
+                    <option value="30">30</option>   
+                    <option value="50">50</option>  
+                    <option value="100">100</option> 
+                </select>
+            </div>
+        </div>
+        <input type="hidden" value="<?php echo $this->getPostActionUrl() ?>" id="controllerAction">
+        <div>
+            <button type="submit" onclick="initialize();
+                    return false;" title="<?php echo $this->__('Search') ?>" class="button"><span><span><?php echo $this->__('Search') ?></span></span></button>
+        </div>
+    </div>
+</table>
+<?php
+$_StoreCollection = $this->getStoreCollection();
+$_StoreCollection->addFieldToFilter('fax',1)->addStoreFilter(Mage::app()->getStore()->getId());
+$totalStoreCount = $_StoreCollection->count();
+//echo '<pre>';
+//                                    print_r($results);
+//                                    echo '</pre>';
+//exit();
+?>
+<div id="stores-list-gmap-div">
+    <div id="store-list-map-canvas">&nbsp;</div>
+</div>
+
+<div id="showResult">
+    
+</div>
+
+<div class="stores-list-div">
+    <?php if ($totalStoreCount): ?>
+
+        <?php
+        $media_dir = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+        $i = 0;
+        foreach ($_StoreCollection as $result):
+            if ($i < 5):
+                $i++;
+                ?>
+    <div class="stores-name"><a href="<?php echo $result->getUrl(); ?>" target="_blank"><img src="<?php echo $media_dir . 'clarion_storelocator/' . $result->getStore_logo(); // echo $this->escapeHtml(ucfirst($store->getName()))        ?>" /></a></div>
+                        <?php
+                    endif;
+                endforeach;
+                ?>
+            <?php endif; ?>
+</div>
+<div class="stores-list-div" id="stores-list-div">
+    
+</div>
+<style type="text/css">
+    .stores-name {display: inline-block;width: 19%;margin-right: 0.5%}
+    .col-main .stores-list-div .stores-name a{width: 100%}
+    .col-main .stores-list-div .stores-name a img{width: 100%;max-width: 100%}
+</style>

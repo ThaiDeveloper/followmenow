@@ -1,0 +1,51 @@
+<?php
+/**
+ * Evince_Ourteam extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category   	Evince
+ * @package		Evince_Ourteam
+ * @copyright  	Copyright (c) 2013
+ * @license		http://opensource.org/licenses/mit-license.php MIT License
+ */
+/**
+ * Our Team view template
+ *
+ * @category	Evince
+ * @package		Evince_Ourteam
+ * @author Evince Development
+ */
+?>
+<?php $_ourteam = $this->getCurrentOurteam(); ?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<!--<div class="page-title ourteam-title">
+    <h1><?php echo $_ourteam->getName(); ?></h1>
+</div>-->
+<div class="ourteam-view">
+    
+    <div class="ourteam-detail">
+        <div class="ourteam-image">
+            <?php if ($_ourteam->getImage()) { ?>
+                <img src="<?php echo Mage::helper('ourteam/ourteam_image')->init($_ourteam, 'image')->resize(225); ?>" alt="<?php echo $this->htmlEscape($_ourteam->getName()); ?>" />
+            <?php } else {?>
+                  <img src="<?php echo $this->getSkinUrl('images/placeholder/ourteam.jpg'); ?>" alt="<?php echo $this->htmlEscape($_ourteam->getName()); ?>" />
+                <?php } ?>
+        </div>
+       <div class="ourteam-right">
+        <h2 class="ourteam-name">
+        <b><?php echo Mage::helper('ourteam')->__('Name'); ?>:</b><?php echo $_ourteam->getName(); ?>
+    </h2>
+        <div class="ourteam-short_desc">
+            <b><?php echo Mage::helper('ourteam')->__('Designation'); ?>:</b><br><?php echo $_ourteam->getDesignation(); ?>
+        </div>
+    <div class="ourteam-description">
+        <b><?php echo Mage::helper('ourteam')->__('Description'); ?>:</b><?php echo $_ourteam->getDescription(); ?>
+    </div>
+       </div>        
+</div>

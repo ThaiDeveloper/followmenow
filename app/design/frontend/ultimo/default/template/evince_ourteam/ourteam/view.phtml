@@ -1,0 +1,33 @@
+<?php
+/**
+ * Evince_Ourteam extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category   	Evince
+ * @package		Evince_Ourteam
+ * @copyright  	Copyright (c) 2013
+ * @license		http://opensource.org/licenses/mit-license.php MIT License
+ */
+/**
+ * Our Team view template
+ *
+ * @category	Evince
+ * @package		Evince_Ourteam
+ * @author Evince Development
+ */
+?>
+<?php $_ourteam = $this->getCurrentOurteam(); ?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<div class="page-title ourteam-title">
+    <h2><?php echo $_ourteam->getName(); ?></h2>
+</div>
+
+<div class="ourteam-view">
+	<?php echo $_ourteam->getDescription(); ?>
+</div>

@@ -1,0 +1,10 @@
+In most of the cases the extension should work as it is. However if you face any problem, read following instructions. This extension overrides the default product listing template. Custom listing template "list.phtml" is present at "app\design\frontend\base\default\template\quickview\product\list.phtml". You can modify it to suit your needs. If your site uses some other custom template for product listing, then please following steps:
+
+1. Just place the these lines after product image:
+	
+	<div class="quick-view-holder">
+		<button type="button" title="<?php echo $this->__('Quick View') ?>" class="button btn-quick-view" onclick="showOptions('<?php echo $_product->getId()?>')"><span><span><span><?php echo $this->__('Quick View') ?></span></span></span></button>
+		<a href='<?php echo $this->getUrl('quickview/index/options',array('product_id'=>$_product->getId()));?>' class='ajax-fancybox' id='fancybox<?php echo $_product->getId()?>' style='display:none'></a>
+	</div>
+
+2. And comment out the line 12-16 and 27-31 in "app\design\frontend\base\default\layout\quickview.xml".

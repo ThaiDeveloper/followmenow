@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Evince_Ourteam extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category   	Evince
+ * @package		Evince_Ourteam
+ * @copyright  	Copyright (c) 2013
+ * @license		http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config>
+	<modules>
+		<Evince_Ourteam>
+			<version>0.0.1</version>
+		</Evince_Ourteam>
+	</modules>
+	<global>
+		<resources>
+			<evince_ourteam_setup>
+				<setup>
+					<module>Evince_Ourteam</module>
+					<class>Evince_Ourteam_Model_Resource_Setup</class>
+				</setup>
+			</evince_ourteam_setup>
+		</resources>
+		<blocks>
+			<ourteam>
+				<class>Evince_Ourteam_Block</class>
+			</ourteam>
+		</blocks>
+		<helpers>
+			<ourteam>
+				<class>Evince_Ourteam_Helper</class>
+			</ourteam>
+		</helpers>
+		<models>
+			<ourteam>
+				<class>Evince_Ourteam_Model</class>
+				<resourceModel>ourteam_resource</resourceModel>
+			</ourteam>
+			<ourteam_resource>
+				<class>Evince_Ourteam_Model_Resource</class>
+				<entities>
+					<ourteam>
+						<table>ourteam_ourteam</table>
+					</ourteam>
+					<ourteam_store>
+						<table>ourteam_ourteam_store</table>
+					</ourteam_store>
+				</entities>
+			</ourteam_resource>
+		</models>
+	</global>
+	<adminhtml>
+		<layout>
+			<updates>
+				<evince_ourteam>
+					<file>evince_ourteam.xml</file>
+				</evince_ourteam>
+			</updates>
+		</layout>
+		<translate>
+			<modules>
+				<Evince_Ourteam>
+					<files>
+						<default>Evince_Ourteam.csv</default>
+					</files>
+				</Evince_Ourteam>
+			</modules>
+		</translate>
+	</adminhtml>
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<Evince_Ourteam before="Mage_Adminhtml">Evince_Ourteam_Adminhtml</Evince_Ourteam>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+	<frontend>
+		<routers>
+			<ourteam>
+				<use>standard</use>
+				<args>
+					<module>Evince_Ourteam</module>
+					<frontName>ourteam</frontName>
+				</args>
+			</ourteam>
+		</routers>
+		<layout>
+			<updates>
+				<evince_ourteam>
+					<file>evince_ourteam.xml</file>
+				</evince_ourteam>
+			</updates>
+		</layout>
+		<translate>
+			<modules>
+				<Evince_Ourteam>
+					<files>
+						<default>Evince_Ourteam.csv</default>
+					</files>
+				</Evince_Ourteam>
+			</modules>
+		</translate>
+	</frontend>
+	<default>
+		<ourteam>
+			<ourteam>
+				<breadcrumbs>1</breadcrumbs>
+
+			</ourteam>
+		</ourteam>
+	</default>
+</config>
