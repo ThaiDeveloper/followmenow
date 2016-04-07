@@ -58,8 +58,17 @@ if(!empty($listTeams)){
      // echo '</pre>';
      // exit();
             ?>
+                <?php
+                    $teamFriendlyUrl = $this->getTeamFriendlyUrl($proTeam['entity_id']);
+
+                    if(!$teamFriendlyUrl){
+                        $targetUrl = $url . 'ourteam/ourteam/view/id/' . $proTeam['entity_id'];
+                    }else{
+                        $targetUrl = $teamFriendlyUrl;
+                    }
+                ?>
                 <li class="ourteam-list-item">
-                    <a href="<?php echo $url . 'ourteam/ourteam/view/id/' . $proTeam['entity_id']; ?>" title="<?php echo $this->htmlEscape($proTeam['name']) ?>">
+                    <a href="<?php echo $targetUrl ?>" title="<?php echo $this->htmlEscape($proTeam['name']) ?>">
                         <?php if ($proTeam['image'] != '') {?>
                             <img class="member_avatar " src="<?php echo $media_url . "ourteam/image" . $proTeam['image'] ?>" alt="<?php echo $proTeam['name']; ?>" />
                         <?php } else { ?>
@@ -99,8 +108,17 @@ if(!empty($listTeams)){
     <div class="ourteam-list-container">
         <ul>
             <?php foreach ($amTeams as $amTeam) : ?>
+                <?php
+                $teamFriendlyUrl = $this->getTeamFriendlyUrl($amTeam['entity_id']);
+
+                if(!$teamFriendlyUrl){
+                    $targetUrl = $url . 'ourteam/ourteam/view/id/' . $amTeam['entity_id'];
+                }else{
+                    $targetUrl = $teamFriendlyUrl;
+                }
+                ?>
                 <li>
-                    <a href="<?php echo $url . 'ourteam/ourteam/view/id/' . $amTeam['entity_id']; ?>" title="<?php echo $this->htmlEscape($amTeam['name']) ?>">
+                    <a href="<?php echo $targetUrl ?>" title="<?php echo $this->htmlEscape($amTeam['name']) ?>">
                         <?php /*
 						<?php if ($amTeam['image']) { ?>
                             <img class="member_avatar " src="<?php echo $media_url . "ourteam/image" . $amTeam['image'] ?>" alt="<?php echo $amTeam['name']; ?>" />

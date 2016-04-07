@@ -61,4 +61,20 @@ class Evince_Ourteam_Block_Ourteam_List extends Mage_Core_Block_Template{
 	public function getPagerHtml(){
 		return $this->getChildHtml('pager');
 	}
+
+	public function getTeamFriendlyUrl($teamId)
+	{
+
+		if(!$teamId) return false;
+
+		$idPath = 'ourteam/view/id/'.$teamId;
+
+		$urlRewrite = Mage::getSingleton('core/url_rewrite')->loadByIdPath($idPath);
+
+		if($urlRewrite->getId()){
+			return $urlRewrite->getRequestPath();
+		}
+
+		return false;
+	}
 }
