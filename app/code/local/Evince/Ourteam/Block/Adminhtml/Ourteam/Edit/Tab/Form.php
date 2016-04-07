@@ -97,6 +97,21 @@ class Evince_Ourteam_Block_Adminhtml_Ourteam_Edit_Tab_Form extends Mage_Adminhtm
                 ),
             ),
         ));
+        /* META */
+
+        $fieldset->addField('meta_title', 'text', array(
+            'label' => Mage::helper('ourteam')->__('Meta Title'),
+            'name' => 'meta_title',
+            'required' => false,
+        ));
+
+        $fieldset->addField('meta_description', 'textarea', array(
+            'label' => Mage::helper('ourteam')->__('Meta Description'),
+            'name' => 'meta_description',
+            'required' => false,
+        ));
+
+        /* END META */
         if (Mage::getSingleton('adminhtml/session')->getOurteamData()) {
             $form->setValues(Mage::getSingleton('adminhtml/session')->getOurteamData());
             Mage::getSingleton('adminhtml/session')->setOurteamData(null);
