@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Follow_Catalog>
+            <version>0.1.0</version>
+        </Follow_Catalog>
+    </modules>
+    <global>
+        <blocks>
+            <follow_catalog>
+                <class>Follow_Catalog_Block</class>
+            </follow_catalog>
+            <catalog>
+                <rewrite>
+                    <product_list>Follow_Catalog_Block_Product_List</product_list>
+                </rewrite>
+            </catalog>
+        </blocks>
+    </global>
+</config>
