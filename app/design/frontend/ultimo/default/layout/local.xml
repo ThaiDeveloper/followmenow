@@ -23,8 +23,13 @@
 			<action method="addItem"><type>skin_js</type><name>js/app.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/jquery.jcarousel.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/jcarousel.responsive.js</name></action>
-			
-		<!-- CSS: -->
+			<!--Fancybox-->
+			<action method="addJs"><script>jquery/jquery.fancybox-1.3.4/fancybox/jquery.easing-1.3.pack.js</script></action>
+			<action method="addJs"><script>jquery/jquery.fancybox-1.3.4/fancybox/jquery.mousewheel-3.0.4.pack.js</script></action>
+			<action method="addJs"><script>jquery/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.js</script></action>
+			<action method="addItem"><type>skin_css</type><name>css/fancybox/jquery.fancybox-1.3.4.css</name><params/></action>
+
+			<!-- CSS: -->
 			
 			<!-- CSS base -->
 			<action method="addItem"><type>skin_css</type><name>css/styles-infortis.css</name><params/></action>
@@ -84,6 +89,7 @@
 		<!-- Footer scripts ====================================================================== -->
 		<reference name="before_body_end">
 			<block type="core/template" name="footer.theme.scripts" template="page/html/footer_theme_scripts.phtml" before="-" />
+			<block type="buyxgetyfreeblock1/freeproduct" name="cart_free_products" template="checkout/cart/free_products.phtml"/>
 		</reference>
 		
 		

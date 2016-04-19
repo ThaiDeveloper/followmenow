@@ -32,6 +32,15 @@
                     </buyxgetyfreeblock1>
                 </observers>
             </checkout_cart_product_add_after>
+			<checkout_cart_update_items_after>
+				<observers>
+					<buyxgetyfreeblock1>
+						<type>singleton</type>
+						<class>PAJ_BuyXGetYFree_Model_Observer</class>
+						<method>checkoutCartUpdateItemsAfter</method>
+					</buyxgetyfreeblock1>
+				</observers>
+			</checkout_cart_update_items_after>
         </events>
     </global>
   <default>
@@ -53,7 +62,7 @@
 			<checkout>
 				<args>
 					<modules>
-						<PAJ_BuyXGetYFree before="Mage_Checkout_CartController">PAJ_BuyXGetYFree_Frontend_Checkout</PAJ_BuyXGetYFree>
+						<!--<PAJ_BuyXGetYFree before="Mage_Checkout_CartController">PAJ_BuyXGetYFree_Frontend_Checkout</PAJ_BuyXGetYFree>-->
 					</modules>
 				</args>
 			</checkout>
